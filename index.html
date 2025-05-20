@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Bio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style/styles.css">
+</head>
+<body>
+    <video id="video-background" muted loop>
+        <source src="background/background.mp4" type="video/mp4">
+    </video>
+
+    <canvas id="canvas"></canvas>
+
+    <audio id="background-audio" loop>
+        <source src="background/background.mp3" type="audio/mpeg">
+    </audio>
+    
+    <div class="blur-square">
+        <div class="profile-circle">
+            <img src="profile/profile.jpg" alt="Profile Picture">
+        </div>
+        <div class="profile-name">notdoublebarrelshotgun</div>
+        <div class="profile-subtitle">Professional dev in C/C#/C++, and Python😎</div>
+        <div class="profile-description">God first🥇, I'm 13 years old and I like cats, making Fortnite cheats, and playing videogames. My partner is <a href="https://discord.com/users/1279608424060944455" target="_blank">vrailn</a> (he made <a href="https://github.com/vrailn/V-ware-Fortnite-external" target="_blank">V-ware</a>). Trying to learn kernel slowly but surely (kernel is its own language).</div>
+        <div class="socials-divider">
+            <span class="socials-text">Links</span>
+            <div class="social-buttons">
+                <a href="https://discord.com/users/1166927777300234302" class="social-button discord-button" target="_blank">
+                    <i class="fab fa-discord"></i>
+                    Discord
+                </a>
+                <a href="https://github.com/notdb1337" class="social-button github-button" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://youtube.com/@_NotDB" class="social-button youtube-button" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                    YouTube
+                </a>
+                <a href="https://tiktok.com/@wyattneedham" class="social-button tiktok-button" target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                    TikTok
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="volume-control">
+        <i class="fas fa-volume-up"></i>
+        <input type="range" class="volume-slider" min="0" max="100" value="50">
+    </div>
+    <div class="overlay" id="overlay">
+        <div class="overlay-text" id="overlay-text"></div>
+    </div>
+
+    <script src="scripts/main.js"></script>
+</body>
+</html>
