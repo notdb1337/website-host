@@ -57,10 +57,16 @@ body {
     backdrop-filter: blur(20px);
     border-radius: 30px;
     z-index: 2;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(0, 0, 0, 0);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 15px 2px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
     padding: 20px;
+}
+
+.blur-square:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+                0 0 25px 5px rgba(255, 255, 255, 0.15);
 }
 
 .profile-circle {
@@ -110,11 +116,6 @@ body {
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     transition: all 0.3s ease;
-}
-
-.profile-name:hover {
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-    transform: translateY(-1px);
 }
 
 .profile-subtitle {

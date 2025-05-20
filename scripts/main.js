@@ -5,31 +5,35 @@ let is_deleting = false;
 let char_index = 0;
 
 const typing_speed = {
-    min: 50,
+    min: 60,
     max: 100
 };
+
 const deleting_speed = {
     min: 30,
     max: 60
 };
+
 const pause_time = 1500;
 
-const title_text = "im undetectable";
+const title_phrases = [
+    "im",
+    "undetectable",
+    "on",
+    "easy-anti-cheat"
+];
+
 let title_index = 0;
+let is_title_deleting = false;
 
 function get_random_delay(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function type_title() {
-    if (title_index < title_text.length) {
-        document.title = title_text.substring(0, title_index + 1);
-        title_index++;
-        setTimeout(type_title, get_random_delay(typing_speed.min, typing_speed.max));
-    } else {
-        title_index = 0;
-        setTimeout(type_title, pause_time);
-    }
+    document.title = title_phrases[title_index];
+    title_index = (title_index + 1) % title_phrases.length;
+    setTimeout(type_title, 1000); 
 }
 
 function type_text() {
@@ -78,7 +82,22 @@ function pause_media() {
     audio.pause();
 }
 
+function sync_media() {
+    const video = document.getElementById('video-background');
+    const audio = document.getElementById('background-audio');
+    
+    if (Math.abs(video.currentTime - audio.currentTime) > 0.1) {
+        audio.currentTime = video.currentTime;
+    }
+}
+
+setInterval(sync_media, 100);
+
 function play_media() {
+    const video = document.getElementById('video-background');
+    const audio = document.getElementById('background-audio');
+    
+    audio.currentTime = video.currentTime;
     video.play();
     audio.play();
 }
