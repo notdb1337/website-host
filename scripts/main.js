@@ -1,4 +1,17 @@
-const text = "click to enter...";
+const background_media = [
+    {
+        video: "https://files.catbox.moe/tuq2jr.mp4",
+        audio: "https://files.catbox.moe/knqq1z.mp3"
+    },
+    {
+        video: "https://files.catbox.moe/9go72x.mp4",
+        audio: "https://files.catbox.moe/lxdn0d.mp3"
+    }
+];
+
+const random_media = background_media[Math.floor(Math.random() * background_media.length)];
+
+const text = "click_to_enter( true );";
 const text_element = document.getElementById('overlay-text');
 let current_text = '';
 let is_deleting = false;
@@ -53,7 +66,14 @@ function type_text() {
         setTimeout(type_text, is_deleting ? pause_time : get_random_delay(typing_speed.min, typing_speed.max));
     }
 
-    text_element.innerHTML = current_text + '<span class="cursor"></span>';
+    const function_name = current_text.split('(')[0];
+    const rest = current_text.substring(function_name.length);
+    const has_true = rest.includes('true');
+    const parentheses = rest.split('true')[0];
+    const true_text = has_true ? 'true' : '';
+    const closing = rest.substring(parentheses.length + (has_true ? 4 : 0));
+    
+    text_element.innerHTML = `<span style="color: rgba(222,121,154,255); text-shadow: 0 0 5px rgba(222,121,154,0.5);">${function_name}</span><span style="color: rgba(154,173,177,255);">${parentheses}</span><span style="color: rgba(125,138,232,255); text-shadow: 0 0 8px rgba(125,138,232,0.7);">${true_text}</span><span style="color: rgba(154,173,177,255);">${closing}</span><span class="cursor"></span>`;
 }
 
 function handle_overlay_click() {
@@ -62,11 +82,18 @@ function handle_overlay_click() {
     const audio = document.getElementById('background-audio');
 
     overlay.classList.add('hidden');
+    video.classList.add('visible');
     video.play();
     audio.play();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    const video = document.getElementById('video-background');
+    const audio = document.getElementById('background-audio');
+    
+    video.src = random_media.video;
+    audio.src = random_media.audio;
+    
     type_text();
     type_title();
     document.getElementById('overlay').addEventListener('click', handle_overlay_click);
