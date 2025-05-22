@@ -38,6 +38,7 @@ const title_phrases = [
 
 let title_index = 0;
 let is_title_deleting = false;
+let has_clicked_enter = false;
 
 function get_random_delay(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -85,6 +86,7 @@ function handle_overlay_click() {
     video.classList.add('visible');
     video.play();
     audio.play();
+    has_clicked_enter = true;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -146,7 +148,7 @@ volume_slider.addEventListener('input', (e) => {
 document.addEventListener('visibilitychange', () => {
     if (document.hidden) {
         pause_media();
-    } else {
+    } else if (has_clicked_enter) {
         play_media();
     }
 });
